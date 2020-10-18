@@ -174,20 +174,7 @@ jobs:
         tag: ${{ env.DATE }}
         overwrite: true
         file_glob: true
-        
-    - name:  Push targets
-      env:
-       SUPER_TOKEN: ${{ secrets.SUPER_TOKEN }}
-      run: |
-        cd openwrt/bin/targets/
-        git init
-        git config user.name "bot"
-        git config user.email "bot@github.com"
-        git add .
-        git commit -m "$DATE"
-        git push --force --quiet https://$SUPER_TOKEN@github.com/kkss2020/Action-Openwrt.git  HEAD:${{matrix.target}}_targets
-        rm -rf .git
-        
+
     - name: Upload Packages to CowTransfer
       if: env.UPLOAD_PACKAGES_DIR == 'true' && env.UPLOAD_TO_COWTRANSFER == 'true' && !cancelled() &&  steps.compile.outputs.status == 'success'
       run: |
