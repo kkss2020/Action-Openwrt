@@ -185,7 +185,7 @@ jobs:
         git config user.email "bot@github.com"
         git add .
         git commit -m "$DATE"
-        git push --force --quiet https://$SUPER_TOKEN@github.com/kkss2020/Openwrt-AutoBuild.git  HEAD:${{matrix.target}}_targets
+        git push --force --quiet https://$SUPER_TOKEN@github.com/kkss2020/Action-Openwrt.git  HEAD:${{matrix.target}}_targets
         rm -rf .git
         
     - name: Upload Packages to CowTransfer
